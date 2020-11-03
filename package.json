@@ -11,7 +11,7 @@
     "dev": "nodemon src/app.js",
     "start": "node src/app.js",
     "lint": "eslint ./src",
-    "detect-secrets": "pip3 install detect-secrets && git diff --staged --name-only | xargs detect-secrets-hook"
+    "detect-secrets": "pip3 install detect-secrets && git diff --staged --name-only | xargs detect-secrets-hook --baseline .secrets.baseline"
   },
   "pre-commit": [
     "lint",
@@ -39,6 +39,7 @@
     "express-openapi-validator": "^3.12.7",
     "github-download-directory": "^2.0.0",
     "ioredis": "^4.17.3",
+    "jq-web": "^0.5.1",
     "js-yaml": "^3.13.1",
     "lodash": "^4.17.19",
     "log-timestamp": "^0.3.0",

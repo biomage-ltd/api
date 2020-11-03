@@ -58,8 +58,12 @@ const config = {
   api: {
     prefix: '/',
   },
-  workerInstanceConfigUrl: 'https://raw.githubusercontent.com/biomage-ltd/iac/master/charts/worker-instance.yaml',
+  workerInstanceConfigUrl: 'https://raw.githubusercontent.com/biomage-ltd/iac/master/releases/production/worker.yaml',
 };
+
+if (config.clusterEnv === 'staging') {
+  config.workerInstanceConfigUrl = `https://raw.githubusercontent.com/biomage-ltd/iac/master/releases/staging/${config.sandboxId}.yaml`;
+}
 
 // We are in the `development` clusterEnv, meaning we run on
 // InfraMock. Set up API accordingly.

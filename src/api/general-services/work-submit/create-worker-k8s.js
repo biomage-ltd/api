@@ -5,6 +5,7 @@ const childProcess = require('child_process');
 const fetch = require('node-fetch');
 const YAML = require('yaml');
 const { Downloader } = require('github-download-directory');
+const jq = require('jq-web');
 const config = require('../../../config');
 const logger = require('../../../utils/logging');
 
@@ -21,10 +22,11 @@ const constructChartValues = async (service) => {
   );
 
   return response.text().then((txt) => {
-    const cfg = YAML.parse(txt);
+    const cfg = YAML.parseAllDocuments(txt);
 
     return {
-      ...cfg,
+      images: jq.json(cfg, '..|objects|.images//empty'),
+      namespace: `worker-${sandboxId}`,
       experimentId,
       clusterEnv,
       workQueueName,
