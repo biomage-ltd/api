@@ -3,6 +3,7 @@ const crypto = require('crypto');
 const createWorkerResources = require('./create-worker-k8s');
 const config = require('../../../config');
 const logger = require('../../../utils/logging');
+const k8s = require('@kubernetes/client-node');
 
 class WorkSubmitService {
   constructor(workRequest) {
@@ -79,10 +80,38 @@ class WorkSubmitService {
     return 'success';
   }
 
+  async getWorkerStatus() {
+    const namespace = 'worker-refs-heads-master';
+    const workerNamePattern = ['worker', this.workerHash].join('-');
+    console.log("&&&&&&& ", workerNamePattern);
+    const kc = await new k8s.KubeConfig();
+    kc.loadFromDefault();
+
+    let statuses = [];
+
+    const k8sApi = await kc.makeApiClient(k8s.CoreV1Api);
+    const podInfo = await k8sApi.listNamespacedPod(namespace);
+
+    podInfo.body.items.forEach((pod) => {
+      console.log("*********** ", pod.metadata.name);
+      // Pending, Terminating, ContainerCreating, Waiting
+      if (pod.metadata.name.includes(workerNamePattern)) {
+        console.log("%%% ", pod.status.phase);
+        statuses.push(pod.status.phase);
+      }
+    });
+
+    await Promise.all(statuses);
+    console.log("Finished");
+    return statuses;
+  }
+
   /**
    * Launches a Kubernetes `Job` with the appropriate configuration.
    */
   async createWorker() {
+    const statuses = await this.getWorkerStatus();
+    console.log("We got: %%%%%%% ", statuses);
     if (config.clusterEnv === 'development' || config.clusterEnv === 'test') {
       logger.log('Not creating a worker because we are running locally...');
       return;
@@ -94,7 +123,7 @@ class WorkSubmitService {
   async submitWork() {
     await Promise.all([
       this.createWorker(),
-      this.getQueueAndHandleMessage(),
+      // this.getQueueAndHandleMessage(),
     ]);
   }
 }

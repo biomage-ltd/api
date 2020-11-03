@@ -41,6 +41,7 @@ const createWorkerResources = async (service) => {
 
   // Download value template from Git repository. Fill in needed things.
   const instanceConfig = await constructChartValues(service);
+  console.log("******* ", instanceConfig);
   const { name } = tmp.fileSync();
   await fs.writeFile(name, YAML.stringify(instanceConfig));
 
