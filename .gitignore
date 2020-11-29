@@ -6,4 +6,5 @@ npm-debug.log
 *.log
 coverage/
 .vscode
+!.vscode/launch.json
 chart-instance
