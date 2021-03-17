@@ -54,6 +54,7 @@ const pipelineResponse = async (io, message) => {
 
   // Download output from S3.
   const s3 = new AWS.S3();
+
   const { output: { bucket, key } } = message;
   const outputObject = await s3.getObject(
     {
