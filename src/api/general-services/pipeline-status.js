@@ -112,7 +112,22 @@ const getPipelineStatus = async (experimentId, processName) => {
   let execution = {};
   let completedSteps = [];
 
+  if (processName === 'qc') {
+    console.log('executionArnDebug');
+    console.log(executionArn);
+
+    console.log('pipelinesHandles[processName]');
+    console.log(pipelinesHandles[processName]);
+
+    console.log('executionArnlengthDebug');
+    console.log(executionArn.length);
+  }
+
   if (!executionArn.length) {
+    if (processName === 'qc') {
+      console.log('LLEGUE');
+    }
+
     execution = {
       startDate: null,
       stopDate: null,

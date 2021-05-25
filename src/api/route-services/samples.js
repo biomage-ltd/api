@@ -53,6 +53,9 @@ class SamplesService {
 
     const response = await dynamodb.getItem(params).promise();
 
+    console.log('responseItemDebug');
+    console.log(JSON.stringify(response.Item));
+
     if (response.Item) {
       const prettyResponse = convertToJsObject(response.Item);
       return prettyResponse;

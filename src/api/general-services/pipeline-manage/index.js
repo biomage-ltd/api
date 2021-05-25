@@ -187,6 +187,9 @@ const createQCPipeline = async (experimentId, processingConfigUpdates) => {
 
       const result = {};
 
+      console.log('samplesidsDebug');
+      console.log(samples);
+
       samples.ids.forEach((sample) => {
         result[sample] = _.merge({}, rawConfig, o[sample]);
       });
