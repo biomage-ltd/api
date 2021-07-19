@@ -125,24 +125,8 @@ Array [
           "ResultPath": null,
           "Type": "Map",
         },
-        "ConfigureEmbedding": Object {
-          "Next": "EndOfPipeline",
-          "Parameters": Object {
-            "config": Object {},
-            "experimentId": "testExperimentId",
-            "processName": "qc",
-            "sampleUuid": "",
-            "server": "remoter-server-testExperimentId.pipeline-test-namespace.svc.cluster.local",
-            "taskName": "configureEmbedding",
-            "uploadCountMatrix": false,
-          },
-          "Resource": "arn:aws:states:eu-west-1:test-account-id:activity:biomage-qc-test-mock-uuid",
-          "ResultPath": null,
-          "TimeoutSeconds": 3600,
-          "Type": "Task",
-        },
         "DataIntegration": Object {
-          "Next": "ConfigureEmbedding",
+          "Next": "EndOfPipeline",
           "Parameters": Object {
             "config": Object {},
             "experimentId": "testExperimentId",

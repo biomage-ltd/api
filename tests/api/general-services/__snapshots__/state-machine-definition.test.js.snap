@@ -513,25 +513,13 @@ exports[`non-tests to document the State Machines - qc cloud 1`] = `
       }
     },
     "DataIntegration": {
-      "Next": "ConfigureEmbedding",
-      "Type": "Task",
-      "ResultPath": null,
-      "TimeoutSeconds": 3600,
-      "Parameters": {
-        "experimentId": "mock-experiment-id",
-        "taskName": "dataIntegration",
-        "config": {},
-        "server": "remoter-server-mock-experiment-id.pipeline-test-namespace.svc.cluster.local"
-      }
-    },
-    "ConfigureEmbedding": {
       "Next": "EndOfPipeline",
       "Type": "Task",
       "ResultPath": null,
       "TimeoutSeconds": 3600,
       "Parameters": {
         "experimentId": "mock-experiment-id",
-        "taskName": "configureEmbedding",
+        "taskName": "dataIntegration",
         "config": {},
         "server": "remoter-server-mock-experiment-id.pipeline-test-namespace.svc.cluster.local"
       }
@@ -699,25 +687,13 @@ exports[`non-tests to document the State Machines - qc local development 1`] = `
       }
     },
     "DataIntegration": {
-      "Next": "ConfigureEmbedding",
-      "Type": "Task",
-      "ResultPath": null,
-      "TimeoutSeconds": 3600,
-      "Parameters": {
-        "experimentId": "mock-experiment-id",
-        "taskName": "dataIntegration",
-        "config": {},
-        "server": "host.docker.internal"
-      }
-    },
-    "ConfigureEmbedding": {
       "Next": "EndOfPipeline",
       "Type": "Task",
       "ResultPath": null,
       "TimeoutSeconds": 3600,
       "Parameters": {
         "experimentId": "mock-experiment-id",
-        "taskName": "configureEmbedding",
+        "taskName": "dataIntegration",
         "config": {},
         "server": "host.docker.internal"
       }
