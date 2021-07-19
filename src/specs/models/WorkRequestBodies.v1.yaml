@@ -8,3 +8,4 @@ oneOf:
   - $ref: ./work-request-bodies/WorkRequestGeneExpression.v1.yaml
   - $ref: ./work-request-bodies/WorkRequestMitochondrialContent.v1.yaml
   - $ref: ./work-request-bodies/WorkRequestDoubletScores.v1.yaml
+  - $ref: ./work-request-bodies/WorkRequestMarkerGenes.v1.yaml

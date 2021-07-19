@@ -1,0 +1,32 @@
+title: Get Marker Genes
+description: Work request body for getting the Marker Genes.
+type: object
+properties:
+  name:
+    type: string
+    description: Name of the work. Must be `MarkerHeatmap`.
+    pattern: MarkerHeatmap
+  nGenes:
+    type: number
+    description: Amount of marker genes to get
+  config:
+    type: object
+    properties:
+      resolution:
+        type: number
+        minimum: 0
+        maximum: 2
+        description: Resolution used to calculate the clustering. Range 0 - 2. Default 0.5 
+    required:
+      - resolution
+  type:
+    type: string
+    description: The type of clustering algorithm to use.
+    enum:
+      - louvain
+      - leiden
+required:
+  - name
+  - nGenes
+  - type
+  - config

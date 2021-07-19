@@ -53,6 +53,7 @@ const handleWorkRequest = async (workRequest, socket) => {
       }
 
       const workSubmitService = new WorkSubmitService(workRequest);
+
       await workSubmitService.submitWork();
     } else {
       logger.log('Unexpected error happened while trying to process cached response:', e.message);

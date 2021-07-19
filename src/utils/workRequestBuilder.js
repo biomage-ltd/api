@@ -12,6 +12,7 @@ const workRequestBuilder = async (workerTaskName, config) => {
     'ClusterCells',
     'GetDoubletScore',
     'GetMitochondrialContent',
+    'MarkerHeatmap',
   ];
 
   if (!workerTaskName || !workerTasks.includes(workerTaskName)) {
